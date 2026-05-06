@@ -134,11 +134,7 @@ In fraud detection, this threshold may be too high because fraud cases are rare.
 
 This project uses predicted fraud probabilities and selects a better threshold based on model performance.
 
-Example:
 
-```python
-y_proba = model.predict_proba(X_test)[:, 1]
-y_pred = (y_proba >= best_threshold).astype(int)
 
 # Results
 -------
