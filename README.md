@@ -88,116 +88,130 @@ Dataset link:
 
 
 # Feature Engineering
-# -------------------
-# The following features were created to improve model performance:
-#
- trans_hour       : Transaction hour
-trans_dayofweek  : Transaction day of week
-trans_month      : Transaction month
-trans_day        : Transaction day
-age              : Customer age
-amt_log          : Log transformation of transaction amount
-distance_km      : Distance between customer and merchant
+-------------------
 
+The following features were created to improve model performance:
+
+* `trans_hour`: Transaction hour extracted from the transaction date and time.
+* `trans_dayofweek`: Transaction day of week to help detect weekly fraud patterns.
+* `trans_month`: Transaction month to capture monthly transaction behavior.
+* `trans_day`: Transaction day of the month.
+* `age`: Customer age calculated from date of birth.
+* `amt_log`: Log transformation of transaction amount to reduce skewness.
+* `distance_km`: Distance between customer location and merchant location.
 
 # Models
-# ------
-# The project trains and compares the following models:
-#
-  - Dummy Classifier
-  - Logistic Regression
-   - Random Forest
-   - XGBoost
-   - SMOTE + Logistic Regression
+------
 
+The project trains and compares the following models:
+
+* Dummy Classifier: Used as a baseline model.
+* Logistic Regression: Used with balanced class weights.
+* Random Forest: Used as a strong non-linear model.
+* XGBoost: Used as the main weighted boosting model.
+* SMOTE + Logistic Regression: Used to test oversampling for fraud detection.
 
 # Imbalance Handling
-# ------------------
-# The dataset is highly imbalanced, so the project uses several techniques
-# to improve fraud detection:
-#
-#   - class_weight="balanced" in Logistic Regression
-#   - class_weight="balanced_subsample" in Random Forest
-#   - scale_pos_weight in XGBoost
-#   - Optional SMOTE oversampling
-#   - Probability-based prediction using predict_proba
-#   - Decision threshold tuning
+------------------
 
+The dataset is highly imbalanced because most transactions are normal and only a small percentage are fraudulent.
+
+To solve this problem, the project uses:
+
+* `class_weight="balanced"` in Logistic Regression.
+* `class_weight="balanced_subsample"` in Random Forest.
+* `scale_pos_weight` in XGBoost.
+* Optional `SMOTE` oversampling.
+* Probability-based prediction using `predict_proba`.
+* Decision threshold tuning.
 
 # Threshold Tuning
-# ----------------
-# The default classification threshold is usually 0.5.
-# In fraud detection, this threshold may be too high because fraud cases are rare.
-#
-# This project uses predicted fraud probabilities and selects a better threshold
-# based on model performance.
+----------------
 
-# Example:
-# y_proba = model.predict_proba(X_test)[:, 1]
-# y_pred = (y_proba >= best_threshold).astype(int)
+The default classification threshold is usually `0.5`.
 
-# This helps the model detect fraud transactions instead of predicting only Not Fraud.
+In fraud detection, this threshold may be too high because fraud cases are rare. This can make the model predict mostly **Not Fraud**.
 
+This project uses predicted fraud probabilities and selects a better threshold based on model performance.
+
+Example:
+
+```python
+y_proba = model.predict_proba(X_test)[:, 1]
+y_pred = (y_proba >= best_threshold).astype(int)
 
 # Results
-# -------
-# The best model was the XGBoost Weighted Model.
-# It successfully assigned high fraud probabilities to real fraudulent transactions.
-#
-# Example:
-#   Fraud Probability: 0.999595
-#   Actual:            1
-#
-# This proves that the model can identify fraud transactions with high confidence.
+-------
 
+The best model was the XGBoost Weighted Model.
+
+* It successfully assigned high fraud probabilities to real fraudulent transactions.
+* It helped solve the problem of predicting only Not Fraud.
+* It ranked suspicious transactions based on fraud probability.
+
+Example result:
+
+| Fraud Probability | Actual |
+|-------------------|--------|
+| 0.999595 | 1 |
+
+This proves that the model can identify fraud transactions with high confidence.
 
 # Output Files
-# ------------
-# The notebook saves the following files:
-#
-#   fraud_detection_model_comparison.csv
-#   fraud_detection_feature_importance.csv
-#   fraud_detection_threshold_comparison.csv
-#   top_suspicious_transactions.csv
-#
-# Saved location in Kaggle:
-#   /kaggle/working/
+------------
+
+The notebook saves the following files:
+
+* `fraud_detection_model_comparison.csv`
+* `fraud_detection_feature_importance.csv`
+* `fraud_detection_threshold_comparison.csv`
+* `top_suspicious_transactions.csv`
+
 
 
 # Technologies Used
-# -----------------
-#   - Python
-#   - Pandas
-#   - NumPy
-#   - Matplotlib
-#   - Scikit-learn
-#   - XGBoost
-#   - Imbalanced-learn
-#   - Kaggle Notebook
+-----------------
 
+The project uses the following tools and libraries:
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-learn
+* XGBoost
+* Imbalanced-learn
+* Kaggle Notebook
 
 # Future Enhancements
-# -------------------
-#   - Use LightGBM and compare it with XGBoost.
-#   - Apply advanced hyperparameter tuning.
-#   - Add SHAP explainability for model interpretation.
-#   - Build a Streamlit web app for fraud prediction.
-#   - Deploy the model as a real-time API.
-#   - Add customer transaction history and velocity-based features.
-#   - Use business cost-based threshold optimization.
+-------------------
 
+Future improvements can include:
+
+* Use LightGBM and compare it with XGBoost.
+* Apply advanced hyperparameter tuning.
+* Add SHAP explainability for model interpretation.
+* Build a Streamlit web app for fraud prediction.
+* Deploy the model as a real-time API.
+* Add customer transaction history and velocity-based features.
+* Use business cost-based threshold optimization.
 
 # Contributing
-# ------------
-# Contributions are welcome.
-# Feel free to fork the repository and submit a pull request.
+------------
 
+Contributions are welcome.
+
+* Feel free to fork the repository.
+* Submit a pull request.
+* Suggest improvements or report issues.
 
 # Contact
-# -------
-# For any inquiries, reach out to:
-#   YOUR_EMAIL@example.com
+-------
 
+For any inquiries, reach out to:
+
+```text
+kimo badr saber@gmail.com
 
 
 
