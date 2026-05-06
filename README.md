@@ -85,5 +85,120 @@ The dataset used in this project is **Credit Card Transactions Fraud Detection**
 
 Dataset link:
 
-```text
-https://www.kaggle.com/datasets/kartik2112/fraud-detection
+
+
+# Feature Engineering
+# -------------------
+# The following features were created to improve model performance:
+#
+#   trans_hour       : Transaction hour
+#   trans_dayofweek  : Transaction day of week
+#   trans_month      : Transaction month
+#   trans_day        : Transaction day
+#   age              : Customer age
+#   amt_log          : Log transformation of transaction amount
+#   distance_km      : Distance between customer and merchant
+
+
+# Models
+# ------
+# The project trains and compares the following models:
+#
+#   - Dummy Classifier
+#   - Logistic Regression
+#   - Random Forest
+#   - XGBoost
+#   - SMOTE + Logistic Regression
+
+
+# Imbalance Handling
+# ------------------
+# The dataset is highly imbalanced, so the project uses several techniques
+# to improve fraud detection:
+#
+#   - class_weight="balanced" in Logistic Regression
+#   - class_weight="balanced_subsample" in Random Forest
+#   - scale_pos_weight in XGBoost
+#   - Optional SMOTE oversampling
+#   - Probability-based prediction using predict_proba
+#   - Decision threshold tuning
+
+
+# Threshold Tuning
+# ----------------
+# The default classification threshold is usually 0.5.
+# In fraud detection, this threshold may be too high because fraud cases are rare.
+#
+# This project uses predicted fraud probabilities and selects a better threshold
+# based on model performance.
+
+# Example:
+# y_proba = model.predict_proba(X_test)[:, 1]
+# y_pred = (y_proba >= best_threshold).astype(int)
+
+# This helps the model detect fraud transactions instead of predicting only Not Fraud.
+
+
+# Results
+# -------
+# The best model was the XGBoost Weighted Model.
+# It successfully assigned high fraud probabilities to real fraudulent transactions.
+#
+# Example:
+#   Fraud Probability: 0.999595
+#   Actual:            1
+#
+# This proves that the model can identify fraud transactions with high confidence.
+
+
+# Output Files
+# ------------
+# The notebook saves the following files:
+#
+#   fraud_detection_model_comparison.csv
+#   fraud_detection_feature_importance.csv
+#   fraud_detection_threshold_comparison.csv
+#   top_suspicious_transactions.csv
+#
+# Saved location in Kaggle:
+#   /kaggle/working/
+
+
+# Technologies Used
+# -----------------
+#   - Python
+#   - Pandas
+#   - NumPy
+#   - Matplotlib
+#   - Scikit-learn
+#   - XGBoost
+#   - Imbalanced-learn
+#   - Kaggle Notebook
+
+
+# Future Enhancements
+# -------------------
+#   - Use LightGBM and compare it with XGBoost.
+#   - Apply advanced hyperparameter tuning.
+#   - Add SHAP explainability for model interpretation.
+#   - Build a Streamlit web app for fraud prediction.
+#   - Deploy the model as a real-time API.
+#   - Add customer transaction history and velocity-based features.
+#   - Use business cost-based threshold optimization.
+
+
+# Contributing
+# ------------
+# Contributions are welcome.
+# Feel free to fork the repository and submit a pull request.
+
+
+# Contact
+# -------
+# For any inquiries, reach out to:
+#   YOUR_EMAIL@example.com
+
+
+
+
+
