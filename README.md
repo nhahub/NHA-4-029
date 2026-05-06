@@ -91,24 +91,24 @@ Dataset link:
 # -------------------
 # The following features were created to improve model performance:
 #
-#   trans_hour       : Transaction hour
-#   trans_dayofweek  : Transaction day of week
-#   trans_month      : Transaction month
-#   trans_day        : Transaction day
-#   age              : Customer age
-#   amt_log          : Log transformation of transaction amount
-#   distance_km      : Distance between customer and merchant
+ trans_hour       : Transaction hour
+trans_dayofweek  : Transaction day of week
+trans_month      : Transaction month
+trans_day        : Transaction day
+age              : Customer age
+amt_log          : Log transformation of transaction amount
+distance_km      : Distance between customer and merchant
 
 
 # Models
 # ------
 # The project trains and compares the following models:
 #
-#   - Dummy Classifier
-#   - Logistic Regression
-#   - Random Forest
-#   - XGBoost
-#   - SMOTE + Logistic Regression
+  - Dummy Classifier
+  - Logistic Regression
+   - Random Forest
+   - XGBoost
+   - SMOTE + Logistic Regression
 
 
 # Imbalance Handling
