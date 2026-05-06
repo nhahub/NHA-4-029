@@ -28,7 +28,8 @@ The main challenge in this project is the severe class imbalance, where most tra
 | **Mean Fraud Probability** | 0.024993 |
 | **Median Fraud Probability** | 0.001150 |
 
-## Top Suspicious Transactions
+# Top Suspicious Transactions
+---------------------------
 
 | Fraud Probability | Actual |
 |-------------------|--------|
@@ -85,7 +86,29 @@ The dataset used in this project is **Credit Card Transactions Fraud Detection**
 
 Dataset link:
 
+```text
+https://www.kaggle.com/datasets/kartik2112/fraud-detection
+```
 
+The dataset contains two main files:
+
+```text
+fraudTrain.csv
+fraudTest.csv
+```
+
+The target column is:
+
+```text
+is_fraud
+```
+
+Target meaning:
+
+| Label | Meaning |
+|-------|---------|
+| 0 | Not Fraud |
+| 1 | Fraud |
 
 # Feature Engineering
 -------------------
@@ -134,7 +157,14 @@ In fraud detection, this threshold may be too high because fraud cases are rare.
 
 This project uses predicted fraud probabilities and selects a better threshold based on model performance.
 
+Example:
 
+```python
+y_proba = model.predict_proba(X_test)[:, 1]
+y_pred = (y_proba >= best_threshold).astype(int)
+```
+
+This helps the model detect fraud transactions instead of predicting only **Not Fraud**.
 
 # Results
 -------
@@ -163,7 +193,11 @@ The notebook saves the following files:
 * `fraud_detection_threshold_comparison.csv`
 * `top_suspicious_transactions.csv`
 
+Saved location in Kaggle:
 
+```text
+/kaggle/working/
+```
 
 # Technologies Used
 -----------------
@@ -207,8 +241,5 @@ Contributions are welcome.
 For any inquiries, reach out to:
 
 ```text
-kimo badr saber@gmail.com
-
-
-
-
+kimobadrsaber@gmail.com
+```
