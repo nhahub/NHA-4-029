@@ -155,15 +155,6 @@ top_suspicious_transactions.csv
 
 ---
 
-## 📬 Contact
-
-**Kareem Badr Saber**
-
-- GitHub: https://github.com/kareembadrsaber
-- LinkedIn: https://www.linkedin.com/in/kareem-abdelkader-b52550b7/
-- Live App: https://fraud-detection-mw9qdcgvjmoazcdg2lyeqc.streamlit.app/
-
----
 
 ## ⭐ Support
 
