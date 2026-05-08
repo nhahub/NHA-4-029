@@ -5,55 +5,63 @@
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Fraud%20Detection-green?style=for-the-badge)
 ![XGBoost](https://img.shields.io/badge/Model-XGBoost-orange?style=for-the-badge)
 
+---
+
 ## 🚀 Live Demo
 
-🔗 [Open the Streamlit App](https://fraud-detection-mw9qdcgvjmoazcdg2lyeqc.streamlit.app/)
+🔗 **Open the App:**  
+[Credit Card Fraud Detection Streamlit App](https://fraud-detection-mw9qdcgvjmoazcdg2lyeqc.streamlit.app/)
 
 ---
 
 ## 📌 Overview
 
-This project is a machine learning application for detecting fraudulent credit card transactions.
+This project is an interactive **Credit Card Fraud Detection** web application built with **Machine Learning** and deployed using **Streamlit**.
 
-The model predicts whether a transaction is:
+The app analyzes transaction details and predicts whether the transaction is:
 
-- ✅ Not Fraud
-- 🚨 Fraud
+- ✅ **Not Fraud**
+- 🚨 **Fraud**
 
-The main challenge is the highly imbalanced dataset, where fraud cases are much fewer than normal transactions.  
-To improve detection, the project uses feature engineering, imbalance handling, probability prediction, and threshold tuning.
+The project focuses on handling imbalanced fraud data using feature engineering, probability prediction, threshold tuning, and suspicious transaction analysis.
+
+---
+
+## 📸 App Screenshots
+
+### 🏠 Transaction Input Interface
+![Transaction Input Interface](images/1.png)
+
+### ✅ Fraud Probability Result
+![Fraud Probability Result](images/2.png)
+
+### 📊 Risk Signal Analysis
+![Risk Signal Analysis](images/3.png)
 
 ---
 
 ## ✨ Key Features
 
-- 🚨 Fraud / Not Fraud classification
-- 📊 Fraud probability prediction
+- 🚨 Fraud / Not Fraud prediction
+- 📊 Fraud probability score
 - ⚖️ Imbalanced data handling
-- 🎯 Threshold tuning
+- 🎯 Custom threshold tuning
 - 🔎 Suspicious transaction ranking
-- 🌐 Interactive Streamlit web app
-- 🧠 Model comparison between Logistic Regression, Random Forest, XGBoost, and SMOTE-based models
+- 🧠 XGBoost weighted classification model
+- 🌐 Interactive Streamlit user interface
+- 📈 Risk signal analysis for better decision support
 
 ---
 
 ## 🧠 Best Model
 
-The best-performing model is:
+The best-performing model used in this project is:
 
 ```text
 XGBoost Weighted Model
 ```
 
-### Model Probability Results
-
-| Metric | Value |
-|---|---|
-| Maximum Fraud Probability | 0.999595 |
-| Mean Fraud Probability | 0.024993 |
-| Median Fraud Probability | 0.001150 |
-
-The top suspicious transactions were correctly ranked as real fraud cases, showing that the model can detect fraud instead of predicting only the majority class.
+This model was selected because it performed well with imbalanced data and successfully assigned high fraud probabilities to suspicious transactions.
 
 ---
 
@@ -100,7 +108,7 @@ is_fraud
 
 ---
 
-## ⚙️ How to Run
+## ⚙️ How to Run Locally
 
 Clone the repository:
 
@@ -109,13 +117,13 @@ git clone https://github.com/YOUR_USERNAME/credit-card-fraud-detection.git
 cd credit-card-fraud-detection
 ```
 
-Install requirements:
+Install the required libraries:
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn xgboost imbalanced-learn streamlit
 ```
 
-Run the app:
+Run the Streamlit app:
 
 ```bash
 streamlit run app.py
@@ -125,7 +133,7 @@ streamlit run app.py
 
 ## 📈 Project Outputs
 
-The project generates:
+The project can generate the following output files:
 
 ```text
 fraud_detection_model_comparison.csv
@@ -138,21 +146,32 @@ top_suspicious_transactions.csv
 
 ## 🚀 Future Improvements
 
-- Add LightGBM model
+- Add LightGBM model comparison
 - Add SHAP explainability
-- Improve Streamlit UI
-- Add batch upload prediction
-- Deploy as a real-time API
-- Add model monitoring
+- Improve the Streamlit UI
+- Add batch transaction upload
+- Deploy the model as a real-time API
+- Add model monitoring and drift detection
+
+---
+
+## 📬 Contact
+
+**Kareem Badr Saber**
+
+- GitHub: https://github.com/kareembadrsaber
+- LinkedIn: https://www.linkedin.com/in/kareem-abdelkader-b52550b7/
+- Live App: https://fraud-detection-mw9qdcgvjmoazcdg2lyeqc.streamlit.app/
 
 ---
 
 ## ⭐ Support
 
-If you found this project useful, please give it a ⭐ on GitHub.
+If you found this project useful, please consider giving it a ⭐ on GitHub.
 
 ---
 
 ## ⚠️ Disclaimer
 
-This project is for educational and portfolio purposes only and should not be used as a production fraud detection system without further validation.
+This project is for educational and portfolio purposes only.  
+It should not be used as a production fraud detection system without further validation, monitoring, and compliance review.
