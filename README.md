@@ -1,490 +1,168 @@
-# Credit Card Fraud Detection
-=============================
+# 💳 Credit Card Fraud Detection
 
-# Overview
---------
+![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-Live_App-red?style=for-the-badge&logo=streamlit)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Fraud%20Detection-green?style=for-the-badge)
+![XGBoost](https://img.shields.io/badge/Model-XGBoost-orange?style=for-the-badge)
 
-This project focuses on developing a machine learning solution to detect fraudulent credit card transactions. The system classifies each transaction as **Not Fraud** or **Fraud** using transaction details, customer information, merchant information, and engineered features.
+## 🚀 Live Demo
 
-The main challenge in this project is the severe class imbalance, where most transactions are normal and only a small percentage are fraudulent. To solve this problem, the project uses imbalance handling techniques, probability-based prediction, and threshold tuning.
+🔗 [Open the Streamlit App](https://fraud-detection-mw9qdcgvjmoazcdg2lyeqc.streamlit.app/)
 
-# Features
---------
+---
 
-* **Fraud Classification Model**: Detects whether a transaction is **Fraud** or **Not Fraud**.
-* **Imbalance Handling**: Uses `class_weight`, `scale_pos_weight`, and optional `SMOTE` to improve fraud detection.
-* **Feature Engineering**: Creates useful features such as transaction hour, customer age, log amount, and distance between customer and merchant.
-* **Threshold Tuning**: Adjusts the fraud decision threshold to avoid predicting only **Not Fraud**.
-* **Suspicious Transaction Ranking**: Ranks transactions by fraud probability for investigation and review.
-* **Model Comparison**: Compares Logistic Regression, Random Forest, XGBoost, and SMOTE-based models.
+## 📌 Overview
 
-# Model Performance
------------------
+This project is a machine learning application for detecting fraudulent credit card transactions.
 
-| Metric | Value |
-|--------|-------|
-| **Best Model** | XGBoost Weighted |
-| **Maximum Fraud Probability** | 0.999595 |
-| **Mean Fraud Probability** | 0.024993 |
-| **Median Fraud Probability** | 0.001150 |
+The model predicts whether a transaction is:
 
-# Top Suspicious Transactions
----------------------------
+- ✅ Not Fraud
+- 🚨 Fraud
 
-| Fraud Probability | Actual |
-|-------------------|--------|
-| 0.999595 | 1 |
-| 0.999588 | 1 |
-| 0.999579 | 1 |
-| 0.999564 | 1 |
-| 0.999563 | 1 |
+The main challenge is the highly imbalanced dataset, where fraud cases are much fewer than normal transactions.  
+To improve detection, the project uses feature engineering, imbalance handling, probability prediction, and threshold tuning.
 
-The top suspicious transactions were actual fraud cases, which confirms that the model is able to detect real fraudulent transactions and is not predicting only the majority class.
+---
 
-# Installation
-------------
+## ✨ Key Features
 
-1. Clone the repository:
+- 🚨 Fraud / Not Fraud classification
+- 📊 Fraud probability prediction
+- ⚖️ Imbalanced data handling
+- 🎯 Threshold tuning
+- 🔎 Suspicious transaction ranking
+- 🌐 Interactive Streamlit web app
+- 🧠 Model comparison between Logistic Regression, Random Forest, XGBoost, and SMOTE-based models
 
-    ```bash
-    git clone https://github.com/YOUR_USERNAME/credit-card-fraud-detection.git
-    cd credit-card-fraud-detection
-    ```
+---
 
-2. Install the required libraries:
+## 🧠 Best Model
 
-    ```bash
-    pip install pandas numpy matplotlib scikit-learn xgboost imbalanced-learn
-    ```
-
-# Usage
------
-
-1. Open the Kaggle Notebook.
-
-2. Add the dataset from Kaggle:
-
-    ```text
-    Credit Card Transactions Fraud Detection
-    ```
-
-3. Make sure the dataset contains:
-
-    ```text
-    fraudTrain.csv
-    fraudTest.csv
-    ```
-
-4. Run all notebook cells from top to bottom.
-
-5. The model will train and generate prediction results, model comparison tables, threshold analysis, and suspicious transaction rankings.
-
-# Dataset
--------
-
-The dataset used in this project is **Credit Card Transactions Fraud Detection** from Kaggle.
-
-Dataset link:
+The best-performing model is:
 
 ```text
-https://www.kaggle.com/datasets/kartik2112/fraud-detection
+XGBoost Weighted Model
 ```
 
-The dataset contains two main files:
+### Model Probability Results
+
+| Metric | Value |
+|---|---|
+| Maximum Fraud Probability | 0.999595 |
+| Mean Fraud Probability | 0.024993 |
+| Median Fraud Probability | 0.001150 |
+
+The top suspicious transactions were correctly ranked as real fraud cases, showing that the model can detect fraud instead of predicting only the majority class.
+
+---
+
+## 🗂️ Dataset
+
+Dataset used:
+
+**Credit Card Transactions Fraud Detection**
+
+Kaggle Dataset:  
+https://www.kaggle.com/datasets/kartik2112/fraud-detection
+
+Main files:
 
 ```text
 fraudTrain.csv
 fraudTest.csv
 ```
 
-The target column is:
+Target column:
 
 ```text
 is_fraud
 ```
 
-Target meaning:
-
-| Label | Meaning |
-|-------|---------|
+| Value | Meaning |
+|---|---|
 | 0 | Not Fraud |
 | 1 | Fraud |
 
-# Feature Engineering
--------------------
+---
 
-The following features were created to improve model performance:
+## 🛠️ Technologies Used
 
-* `trans_hour`: Transaction hour extracted from the transaction date and time.
-* `trans_dayofweek`: Transaction day of week to help detect weekly fraud patterns.
-* `trans_month`: Transaction month to capture monthly transaction behavior.
-* `trans_day`: Transaction day of the month.
-* `age`: Customer age calculated from date of birth.
-* `amt_log`: Log transformation of transaction amount to reduce skewness.
-* `distance_km`: Distance between customer location and merchant location.
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Scikit-learn
+- XGBoost
+- Imbalanced-learn
+- Streamlit
+- Kaggle Notebook
 
-# Models
-------
+---
 
-The project trains and compares the following models:
+## ⚙️ How to Run
 
-* Dummy Classifier: Used as a baseline model.
-* Logistic Regression: Used with balanced class weights.
-* Random Forest: Used as a strong non-linear model.
-* XGBoost: Used as the main weighted boosting model.
-* SMOTE + Logistic Regression: Used to test oversampling for fraud detection.
+Clone the repository:
 
-# Imbalance Handling
-------------------
-
-The dataset is highly imbalanced because most transactions are normal and only a small percentage are fraudulent.
-
-To solve this problem, the project uses:
-
-* `class_weight="balanced"` in Logistic Regression.
-* `class_weight="balanced_subsample"` in Random Forest.
-* `scale_pos_weight` in XGBoost.
-* Optional `SMOTE` oversampling.
-* Probability-based prediction using `predict_proba`.
-* Decision threshold tuning.
-
-# Threshold Tuning
-----------------
-
-The default classification threshold is usually `0.5`.
-
-In fraud detection, this threshold may be too high because fraud cases are rare. This can make the model predict mostly **Not Fraud**.
-
-This project uses predicted fraud probabilities and selects a better threshold based on model performance.
-
-Example:
-
-```python
-y_proba = model.predict_proba(X_test)[:, 1]
-y_pred = (y_proba >= best_threshold).astype(int)
+```bash
+git clone https://github.com/YOUR_USERNAME/credit-card-fraud-detection.git
+cd credit-card-fraud-detection
 ```
 
-This helps the model detect fraud transactions instead of predicting only **Not Fraud**.
+Install requirements:
 
-# Results
--------
+```bash
+pip install pandas numpy matplotlib scikit-learn xgboost imbalanced-learn streamlit
+```
 
-The best model was the XGBoost Weighted Model.
+Run the app:
 
-* It successfully assigned high fraud probabilities to real fraudulent transactions.
-* It helped solve the problem of predicting only Not Fraud.
-* It ranked suspicious transactions based on fraud probability.
+```bash
+streamlit run app.py
+```
 
-Example result:
+---
 
-| Fraud Probability | Actual |
-|-------------------|--------|
-| 0.999595 | 1 |
+## 📈 Project Outputs
 
-This proves that the model can identify fraud transactions with high confidence.
-
-# Output Files
-------------
-
-The notebook saves the following files:
-
-* `fraud_detection_model_comparison.csv`
-* `fraud_detection_feature_importance.csv`
-* `fraud_detection_threshold_comparison.csv`
-* `top_suspicious_transactions.csv`
-
-Saved location in Kaggle:
+The project generates:
 
 ```text
-/kaggle/working/
+fraud_detection_model_comparison.csv
+fraud_detection_feature_importance.csv
+fraud_detection_threshold_comparison.csv
+top_suspicious_transactions.csv
 ```
 
-# Technologies Used
------------------
+---
 
-The project uses the following tools and libraries:
+## 🚀 Future Improvements
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Scikit-learn
-* XGBoost
-* Imbalanced-learn
-* Kaggle Notebook
+- Add LightGBM model
+- Add SHAP explainability
+- Improve Streamlit UI
+- Add batch upload prediction
+- Deploy as a real-time API
+- Add model monitoring
 
-# Future Enhancements
--------------------
+---
 
-Future improvements can include:
+## 📬 Contact
 
-* Use LightGBM and compare it with XGBoost.
-* Apply advanced hyperparameter tuning.
-* Add SHAP explainability for model interpretation.
-* Build a Streamlit web app for fraud prediction.
-* Deploy the model as a real-time API.
-* Add customer transaction history and velocity-based features.
-* Use business cost-based threshold optimization.
+**Kareem Badr Saber**
 
-# Contributing
-------------
+- GitHub: https://github.com/kareembadrsaber
+- LinkedIn: https://www.linkedin.com/in/kareem-abdelkader-b52550b7/
+- App: https://fraud-detection-mw9qdcgvjmoazcdg2lyeqc.streamlit.app/
 
-Contributions are welcome.
+---
 
-* Feel free to fork the repository.
-* Submit a pull request.
-* Suggest improvements or report issues.
+## ⭐ Support
 
-# Contact
--------
+If you found this project useful, please give it a ⭐ on GitHub.
 
-For any inquiries, reach out to:
+---
 
-```text
-# Credit Card Fraud Detection
-=============================
+## ⚠️ Disclaimer
 
-# Overview
---------
-
-This project focuses on developing a machine learning solution to detect fraudulent credit card transactions. The system classifies each transaction as **Not Fraud** or **Fraud** using transaction details, customer information, merchant information, and engineered features.
-
-The main challenge in this project is the severe class imbalance, where most transactions are normal and only a small percentage are fraudulent. To solve this problem, the project uses imbalance handling techniques, probability-based prediction, and threshold tuning.
-
-# Features
---------
-
-* **Fraud Classification Model**: Detects whether a transaction is **Fraud** or **Not Fraud**.
-* **Imbalance Handling**: Uses `class_weight`, `scale_pos_weight`, and optional `SMOTE` to improve fraud detection.
-* **Feature Engineering**: Creates useful features such as transaction hour, customer age, log amount, and distance between customer and merchant.
-* **Threshold Tuning**: Adjusts the fraud decision threshold to avoid predicting only **Not Fraud**.
-* **Suspicious Transaction Ranking**: Ranks transactions by fraud probability for investigation and review.
-* **Model Comparison**: Compares Logistic Regression, Random Forest, XGBoost, and SMOTE-based models.
-
-# Model Performance
------------------
-
-| Metric | Value |
-|--------|-------|
-| **Best Model** | XGBoost Weighted |
-| **Maximum Fraud Probability** | 0.999595 |
-| **Mean Fraud Probability** | 0.024993 |
-| **Median Fraud Probability** | 0.001150 |
-
-# Top Suspicious Transactions
----------------------------
-
-| Fraud Probability | Actual |
-|-------------------|--------|
-| 0.999595 | 1 |
-| 0.999588 | 1 |
-| 0.999579 | 1 |
-| 0.999564 | 1 |
-| 0.999563 | 1 |
-
-The top suspicious transactions were actual fraud cases, which confirms that the model is able to detect real fraudulent transactions and is not predicting only the majority class.
-
-# Installation
-------------
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/YOUR_USERNAME/credit-card-fraud-detection.git
-    cd credit-card-fraud-detection
-    ```
-
-2. Install the required libraries:
-
-    ```bash
-    pip install pandas numpy matplotlib scikit-learn xgboost imbalanced-learn
-    ```
-
-# Usage
------
-
-1. Open the Kaggle Notebook.
-
-2. Add the dataset from Kaggle:
-
-    ```text
-    Credit Card Transactions Fraud Detection
-    ```
-
-3. Make sure the dataset contains:
-
-    ```text
-    fraudTrain.csv
-    fraudTest.csv
-    ```
-
-4. Run all notebook cells from top to bottom.
-
-5. The model will train and generate prediction results, model comparison tables, threshold analysis, and suspicious transaction rankings.
-
-# Dataset
--------
-
-The dataset used in this project is **Credit Card Transactions Fraud Detection** from Kaggle.
-
-Dataset link:
-
-```text
-https://www.kaggle.com/datasets/kartik2112/fraud-detection
-```
-
-The dataset contains two main files:
-
-```text
-fraudTrain.csv
-fraudTest.csv
-```
-
-The target column is:
-
-```text
-is_fraud
-```
-
-Target meaning:
-
-| Label | Meaning |
-|-------|---------|
-| 0 | Not Fraud |
-| 1 | Fraud |
-
-# Feature Engineering
--------------------
-
-The following features were created to improve model performance:
-
-* `trans_hour`: Transaction hour extracted from the transaction date and time.
-* `trans_dayofweek`: Transaction day of week to help detect weekly fraud patterns.
-* `trans_month`: Transaction month to capture monthly transaction behavior.
-* `trans_day`: Transaction day of the month.
-* `age`: Customer age calculated from date of birth.
-* `amt_log`: Log transformation of transaction amount to reduce skewness.
-* `distance_km`: Distance between customer location and merchant location.
-
-# Models
-------
-
-The project trains and compares the following models:
-
-* Dummy Classifier: Used as a baseline model.
-* Logistic Regression: Used with balanced class weights.
-* Random Forest: Used as a strong non-linear model.
-* XGBoost: Used as the main weighted boosting model.
-* SMOTE + Logistic Regression: Used to test oversampling for fraud detection.
-
-# Imbalance Handling
-------------------
-
-The dataset is highly imbalanced because most transactions are normal and only a small percentage are fraudulent.
-
-To solve this problem, the project uses:
-
-* `class_weight="balanced"` in Logistic Regression.
-* `class_weight="balanced_subsample"` in Random Forest.
-* `scale_pos_weight` in XGBoost.
-* Optional `SMOTE` oversampling.
-* Probability-based prediction using `predict_proba`.
-* Decision threshold tuning.
-
-# Threshold Tuning
-----------------
-
-The default classification threshold is usually `0.5`.
-
-In fraud detection, this threshold may be too high because fraud cases are rare. This can make the model predict mostly **Not Fraud**.
-
-This project uses predicted fraud probabilities and selects a better threshold based on model performance.
-
-Example:
-
-```python
-y_proba = model.predict_proba(X_test)[:, 1]
-y_pred = (y_proba >= best_threshold).astype(int)
-```
-
-This helps the model detect fraud transactions instead of predicting only **Not Fraud**.
-
-# Results
--------
-
-The best model was the XGBoost Weighted Model.
-
-* It successfully assigned high fraud probabilities to real fraudulent transactions.
-* It helped solve the problem of predicting only Not Fraud.
-* It ranked suspicious transactions based on fraud probability.
-
-Example result:
-
-| Fraud Probability | Actual |
-|-------------------|--------|
-| 0.999595 | 1 |
-
-This proves that the model can identify fraud transactions with high confidence.
-
-# Output Files
-------------
-
-The notebook saves the following files:
-
-* `fraud_detection_model_comparison.csv`
-* `fraud_detection_feature_importance.csv`
-* `fraud_detection_threshold_comparison.csv`
-* `top_suspicious_transactions.csv`
-
-Saved location in Kaggle:
-
-```text
-/kaggle/working/
-```
-
-# Technologies Used
------------------
-
-The project uses the following tools and libraries:
-
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Scikit-learn
-* XGBoost
-* Imbalanced-learn
-* Kaggle Notebook
-
-# Future Enhancements
--------------------
-
-Future improvements can include:
-
-* Use LightGBM and compare it with XGBoost.
-* Apply advanced hyperparameter tuning.
-* Add SHAP explainability for model interpretation.
-* Build a Streamlit web app for fraud prediction.
-* Deploy the model as a real-time API.
-* Add customer transaction history and velocity-based features.
-* Use business cost-based threshold optimization.
-
-# Contributing
-------------
-
-Contributions are welcome.
-
-* Feel free to fork the repository.
-* Submit a pull request.
-* Suggest improvements or report issues.
-
-# Contact
--------
-
-For any inquiries, reach out to:
-
-```text
-https://fraud-detection-mw9qdcgvjmoazcdg2lyeqc.streamlit.app/
-```
-
-```
+This project is for educational and portfolio purposes only and should not be used as a production fraud detection system without further validation.
