@@ -995,7 +995,7 @@ else:
       </div>
       <div style="font-family:'Share Tech Mono',monospace;font-size:0.55rem;
                   color:#0d2530;margin-top:0.75rem;letter-spacing:0.08em">
-        SYS TIME: {idle_time} &nbsp;&#183;&nbsp;  &nbsp;&#183;&nbsp; MONITORING
+        
       </div>
     </div>
     """, unsafe_allow_html=True)
